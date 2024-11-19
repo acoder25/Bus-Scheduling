@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Route Planner</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .card-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            background-color: white;
+            color: #374151;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn i {
+            margin-right: 5px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .input {
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .action-group {
+            border: none;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            margin-right: 200px;
+            margin-left: 200px;
+        }
+        /* .btn-danger {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+        } */
+        .alert {
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f3f4f6;
+            color: #374151;
+            margin-top: 20px;
+            display: none;
+        }
+        .map-placeholder {
+            height: 300px;
+            background-color: #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Bus Route Planner</h2>
+            </div>
+            <div class="card-content">
+                <div class="button-group">
+                    <button class="btn" id="makeRouteBtn"><i data-lucide="map-pin"></i> Make a Route</button>
+                    <button class="btn" id="deleteRouteBtn"><i data-lucide="map-pin"></i> Delete a Route</button>
+                    <button class="btn" id="busReachStatus"><i data-lucide="check"></i> Bus Reached</button>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="input" id="sourceName" placeholder="Source Name">
+                    <input type="text" class="input" id="destinationName" placeholder="Destination Name">
+                </div>
+                <div class="action-group">
+                    <button class="btn btn-primary" id="createRoute"><i data-lucide="plus"></i> Create Route</button>
+                    
+                </div>
+                <div id="message" class="alert"></div>
+            </div>
+        </div>
+        <div class="map-placeholder">
+            <iframe src="{{ url_for('display_map') }}" title="Delhi Bus Routes Map" width="600px" height="300px"></iframe>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='sih.js') }}"></script>
+</body>
+</html>
